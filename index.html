@@ -13,18 +13,37 @@
     <script type="text/javascript" src="src/easyui/jquery.min.js"></script>
     <!--easyuUI文件-->
     <script type="text/javascript" src="src/easyui/jquery.easyui.min.js"></script>
+    <!--引入index.js-->
+    <script src="src/js/index.js"></script>
 
 </head>
 <body>
-<div class="easyui-dialog" style="width:400px;height:200px"
-     data-options="title:'My Dialog',collapsible:true,iconCls:'icon-ok',onOpen:function(){}">
 
+<!--
+有2种方式引入
+1. js
+2. class文件引入
 
-    hello world
+-->
 
-    easy ui
+<!--<div class="easyui-dialog" style="width:400px;height:200px"-->
+     <!--data-options="title:'My Dialog',collapsible:true,iconCls:'icon-ok',onOpen:function(){}">-->
+    <!---->
+    <!--hello world-->
+    <!--easy ui-->
 
+<!--</div>-->
+
+<div id="box" style="width:400px;height:200px"  data-options="title:'My Dialog',collapsible:true,iconCls:'icon-ok',onOpen:function(){}">
+
+hello world
+easy ui
+    方式2,用js打开
 
 </div>
+
+
+
+
 </body>
 </html>
