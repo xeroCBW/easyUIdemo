@@ -4,18 +4,27 @@
     <meta charset="UTF-8">
     <title>查询列表页面</title>
 </head>
-<body>
+<body class="easyui-layout">
 
 
+<div region="north" id="header" style="height:100px;">
 
+    <div class="">
+        系统编码:</a><input id="code" class="easyui-searchbox"></input> 服务器编码:</a><input id="code" class="easyui-searchbox"></input>
+    </div>
+    <div class="">
+        数据库名称:</a><input id="name" class="easyui-searchbox"></input>
+    </div>
+    <div class="">
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width:80px">Search</a>
+    </div>
 
-<div class="">
-    系统编码:</a><input id="code" class="easyui-searchbox"></input> 服务器编码:</a><input id="code" class="easyui-searchbox"></input>
 </div>
-<div class="">
-    数据库名称:</a><input id="name" class="easyui-searchbox"></input> 查询:<input  type="button"></input> 重置<input id="code" type="button"></input>
-</div>
 
+<div region="center" style="padding:5px;background:#eee;" fit="true" >
+    中间部分
+
+</div>
 
 
 </body>
