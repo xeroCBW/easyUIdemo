@@ -1,9 +1,10 @@
 <!-- 指标库列表 -->
 
 <!-- 数据表 -->
+<!--url="data/griddata.json" method="get"-->
 <table class="easyui-datagrid" title="指标库列表" fit="true" fitColumns="true"
-	url="data/griddata.json" method="get" toolbar="#toolbar" 
-	striped="true" rownumbers="true" pagination="true" remoteSort="false">
+	toolbar="#toolbar"
+	   striped="true" rownumbers="true" pagination="true" remoteSort="false" id="wu-datagrid">
 	<thead>
 		<tr>
 			<th field="kpiName" width="20" align="center" sortable="true">指标名称</th>
@@ -106,4 +107,120 @@
 			$("#dlg").dialog("close");
 		});
 	});
+
+
+	//设置加载数据
+    /**
+     * 客户信息JS
+     */
+    $(document).ready(function(){
+        //初始载入数据
+        //loadData();
+
+        //刷新数据
+        // reload();
+
+        testData();
+		
+    });
+
+    /*
+ * 初始载入数据
+ */
+    function loadData()
+    {
+        var url = "Report/ReportSelectCustomer";
+        var param = null;
+        //查询需要载入的数据
+        getDateGrid();
+        getData(url,param);
+    };
+
+    /**
+     * 载入数据
+     */
+    function getDateGrid(){
+        $('#wu-datagrid').datagrid({
+            loadFilter:pagerFilter,
+            rownumbers:true,
+            singleSelect:false,
+            pageSize:20,
+            pagination:true,
+            multiSort:true,
+            fitColumns:true,
+            fit:true,
+            columns:[[
+                {checkbox:true},
+                { field:'kpiName',title:'指标名称',width:100,sortable:true},
+                { field:'isPublic',title:'是否公用',width:100,sortable:true},
+                { field:'department',title:'维护部门',width:100},
+                { field:'role',title:'维护角色',width:100},
+                { field:'department2',title:'审核部门',width:100},
+                { field:'mark',title:'备注说明',width:100},
+
+            ]]
+        });
+    }
+
+    /*
+ * 发送请求，获取数据
+ */
+    function getData(url,param)
+    {
+        $.ajax({
+            url: url,
+            type: "POST",
+            async : false,
+            contentType:'application/json;charset=UTF-8',
+            data: JSON.stringify(param),
+            dataType: "JSON",
+            timeout: 20000,
+            success : function (data) {
+                reLodadDateGrid(data);
+            },
+            error : function (data){
+            }
+        });
+    }
+
+    /*
+ * 组装dataGrid数据
+ */
+    function reLodadDateGrid(data)
+    {
+		//读取文件
+        console.log(data);
+        console.log("--------------------");
+        $('#wu-datagrid').datagrid('loadData', data);
+
+    }
+
+    /**
+     * 刷新记录
+     */
+    function reload()
+    {
+        $("#customer-reload").click(function(){
+            $.messager.confirm('信息提示','确定要刷新？', function(result)
+            {
+                loadData();
+            });
+        });
+    }
+    
+    function testData() {
+
+
+        $.getJSON('data/testgriddata.json',function(json){
+            var data = json;
+            alert("------");
+
+            reLodadDateGrid(data);
+        });
+
+
+
+    }
+
+
 </script>
